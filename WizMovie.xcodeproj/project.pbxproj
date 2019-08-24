@@ -14,6 +14,7 @@
 		842C511323112BF300661C21 /* WizMovieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842C511223112BF300661C21 /* WizMovieTests.swift */; };
 		842C5131231147AD00661C21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 842C5130231147AD00661C21 /* Main.storyboard */; };
 		842C51342311516D00661C21 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842C51332311516D00661C21 /* MovieCell.swift */; };
+		842C513623115C1800661C21 /* FavoriteMovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842C513523115C1700661C21 /* FavoriteMovieListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		842C511423112BF300661C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		842C5130231147AD00661C21 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		842C51332311516D00661C21 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		842C513523115C1700661C21 /* FavoriteMovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMovieListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				842C50FF23112BF300661C21 /* MovieListViewController.swift */,
+				842C513523115C1700661C21 /* FavoriteMovieListViewController.swift */,
 			);
 			path = "Base Classes";
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				842C510023112BF300661C21 /* MovieListViewController.swift in Sources */,
 				842C50FE23112BF300661C21 /* AppDelegate.swift in Sources */,
 				842C51342311516D00661C21 /* MovieCell.swift in Sources */,
+				842C513623115C1800661C21 /* FavoriteMovieListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
