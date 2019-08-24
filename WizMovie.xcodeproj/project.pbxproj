@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		842C50FE23112BF300661C21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842C50FD23112BF300661C21 /* AppDelegate.swift */; };
-		842C510023112BF300661C21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842C50FF23112BF300661C21 /* ViewController.swift */; };
-		842C510323112BF300661C21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 842C510123112BF300661C21 /* Main.storyboard */; };
+		842C510023112BF300661C21 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842C50FF23112BF300661C21 /* MovieListViewController.swift */; };
 		842C510523112BF300661C21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842C510423112BF300661C21 /* Assets.xcassets */; };
 		842C510823112BF300661C21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 842C510623112BF300661C21 /* LaunchScreen.storyboard */; };
 		842C511323112BF300661C21 /* WizMovieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842C511223112BF300661C21 /* WizMovieTests.swift */; };
+		842C5131231147AD00661C21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 842C5130231147AD00661C21 /* Main.storyboard */; };
+		842C51342311516D00661C21 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842C51332311516D00661C21 /* MovieCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,14 +29,15 @@
 /* Begin PBXFileReference section */
 		842C50FA23112BF300661C21 /* WizMovie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WizMovie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		842C50FD23112BF300661C21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		842C50FF23112BF300661C21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		842C510223112BF300661C21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		842C50FF23112BF300661C21 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		842C510423112BF300661C21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		842C510723112BF300661C21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		842C510923112BF300661C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		842C510E23112BF300661C21 /* WizMovieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WizMovieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		842C511223112BF300661C21 /* WizMovieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WizMovieTests.swift; sourceTree = "<group>"; };
 		842C511423112BF300661C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		842C5130231147AD00661C21 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		842C51332311516D00661C21 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +79,7 @@
 		842C50FC23112BF300661C21 /* WizMovie */ = {
 			isa = PBXGroup;
 			children = (
-				842C512A2311462100661C21 /* Scenes */,
+				842C512F2311479E00661C21 /* Scenes */,
 				842C51292311460300661C21 /* Base Classes */,
 				842C51272311458100661C21 /* App Delegate */,
 				842C51232311458100661C21 /* Extensions */,
@@ -156,6 +158,7 @@
 		842C51282311458100661C21 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				842C51322311514300661C21 /* Cells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -163,17 +166,25 @@
 		842C51292311460300661C21 /* Base Classes */ = {
 			isa = PBXGroup;
 			children = (
-				842C50FF23112BF300661C21 /* ViewController.swift */,
+				842C50FF23112BF300661C21 /* MovieListViewController.swift */,
 			);
 			path = "Base Classes";
 			sourceTree = "<group>";
 		};
-		842C512A2311462100661C21 /* Scenes */ = {
+		842C512F2311479E00661C21 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				842C510123112BF300661C21 /* Main.storyboard */,
+				842C5130231147AD00661C21 /* Main.storyboard */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		842C51322311514300661C21 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				842C51332311516D00661C21 /* MovieCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,9 +268,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842C5131231147AD00661C21 /* Main.storyboard in Resources */,
 				842C510823112BF300661C21 /* LaunchScreen.storyboard in Resources */,
 				842C510523112BF300661C21 /* Assets.xcassets in Resources */,
-				842C510323112BF300661C21 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,8 +288,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				842C510023112BF300661C21 /* ViewController.swift in Sources */,
+				842C510023112BF300661C21 /* MovieListViewController.swift in Sources */,
 				842C50FE23112BF300661C21 /* AppDelegate.swift in Sources */,
+				842C51342311516D00661C21 /* MovieCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,14 +313,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		842C510123112BF300661C21 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				842C510223112BF300661C21 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		842C510623112BF300661C21 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -442,7 +446,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6SBFLP73DB;
-				INFOPLIST_FILE = WizMovie/Info.plist;
+				INFOPLIST_FILE = WizMovie/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -460,7 +464,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6SBFLP73DB;
-				INFOPLIST_FILE = WizMovie/Info.plist;
+				INFOPLIST_FILE = WizMovie/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
