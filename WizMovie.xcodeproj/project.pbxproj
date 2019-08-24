@@ -77,12 +77,16 @@
 		842C50FC23112BF300661C21 /* WizMovie */ = {
 			isa = PBXGroup;
 			children = (
-				842C50FD23112BF300661C21 /* AppDelegate.swift */,
-				842C50FF23112BF300661C21 /* ViewController.swift */,
-				842C510123112BF300661C21 /* Main.storyboard */,
-				842C510423112BF300661C21 /* Assets.xcassets */,
-				842C510623112BF300661C21 /* LaunchScreen.storyboard */,
-				842C510923112BF300661C21 /* Info.plist */,
+				842C512A2311462100661C21 /* Scenes */,
+				842C51292311460300661C21 /* Base Classes */,
+				842C51272311458100661C21 /* App Delegate */,
+				842C51232311458100661C21 /* Extensions */,
+				842C51252311458100661C21 /* Models */,
+				842C51262311458100661C21 /* Networking */,
+				842C51222311458000661C21 /* Reuseable */,
+				842C51242311458100661C21 /* ViewModels */,
+				842C51282311458100661C21 /* Views */,
+				842C51212311456200661C21 /* Resources */,
 			);
 			path = WizMovie;
 			sourceTree = "<group>";
@@ -94,6 +98,82 @@
 				842C511423112BF300661C21 /* Info.plist */,
 			);
 			path = WizMovieTests;
+			sourceTree = "<group>";
+		};
+		842C51212311456200661C21 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				842C510423112BF300661C21 /* Assets.xcassets */,
+				842C510923112BF300661C21 /* Info.plist */,
+				842C510623112BF300661C21 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		842C51222311458000661C21 /* Reuseable */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Reuseable;
+			sourceTree = "<group>";
+		};
+		842C51232311458100661C21 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		842C51242311458100661C21 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		842C51252311458100661C21 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		842C51262311458100661C21 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		842C51272311458100661C21 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				842C50FD23112BF300661C21 /* AppDelegate.swift */,
+			);
+			path = "App Delegate";
+			sourceTree = "<group>";
+		};
+		842C51282311458100661C21 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		842C51292311460300661C21 /* Base Classes */ = {
+			isa = PBXGroup;
+			children = (
+				842C50FF23112BF300661C21 /* ViewController.swift */,
+			);
+			path = "Base Classes";
+			sourceTree = "<group>";
+		};
+		842C512A2311462100661C21 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				842C510123112BF300661C21 /* Main.storyboard */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
