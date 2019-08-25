@@ -11,6 +11,8 @@ import XCTest
 
 class WizMovieTests: XCTestCase {
 
+    private let networkService = Network.shared
+
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -31,4 +33,26 @@ class WizMovieTests: XCTestCase {
         }
     }
 
+    func testSearchWithMovieAvailable() {
+        let promise = expectation(description: "Search for batman movies")
+        let url: String = "\(EndPoints.Search.path)\("batman")\(APIKey.ApiKey.rawValue)"
+        networkService.searchMoviesOnJson(urlByName: url,type: Movies.self) { (response,success,error) in
+            XCTAssertNil(error)
+            XCTAssertTrue(success == "True")
+            promise.fulfill()
+        }
+        waitForExpectations(timeout: 2, handler: nil)
+    }
+    
+    func testSearchNoMovieAvailable() {
+        let promise = expectation(description: "Search for ba movies")
+        let url: String = "\(EndPoints.Search.path)\("ba")\(APIKey.ApiKey.rawValue)"
+        networkService.searchMoviesOnJson(urlByName: url,type: Movies.self) { (response,success,error) in
+            XCTAssertTrue(success == "False")
+            XCTAssertEqual("The operation couldn’t be completed. (No Movie error -101.)",
+                           error?.localizedDescription)
+            promise.fulfill()
+        }
+        waitForExpectations(timeout: 2, handler: nil)
+    }
 }

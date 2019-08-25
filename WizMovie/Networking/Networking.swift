@@ -14,7 +14,8 @@ class Network{
     // MARK: - Singleton
     static let shared = Network()
     
-    func searchMoviesOnJson<T: Codable>(urlByName: String,type: T.Type, completionHandler: ((_ response: T?, Error?) -> Void)?) {
+    // MARK: - Network/API Request
+    func searchMoviesOnJson<T: Codable>(urlByName: String,type: T.Type, completionHandler: ((_ response: T?,_ Success: String,Error?) -> Void)?) {
         
         //returns a list of movies that contains the title searched
         Alamofire.request(urlByName).responseJSON {
@@ -33,16 +34,16 @@ class Network{
                         guard let decoded = response.decode(type) else {
                             return
                         }
-                        completionHandler?(decoded, nil)
+                        completionHandler?(decoded,"True", nil)
                     }catch{
                         print(error)
                     }
                 }else{
-                    completionHandler?(nil,NSError(domain: "No Movie", code: -105, userInfo: nil))
+                    completionHandler?(nil,"False",NSError(domain: "No Movie", code: -101, userInfo: nil))
                 }
                 
             case .failure(let err):
-                completionHandler?(nil,err)
+                completionHandler?(nil,"False",err)
             }
         }
     }
