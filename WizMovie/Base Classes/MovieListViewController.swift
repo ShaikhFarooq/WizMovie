@@ -19,36 +19,25 @@ class MovieListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        setUpSearchBar()
     }
 
-
-}
-
-// MARK: UITableViewDataSource
-
-extension MovieListViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      return 10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let movieCell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath) as? MovieCell else {
-            fatalError("Invalid cell Identifier! Check `MovieRowCell` identifier function.")
-        }
-        return movieCell
-
-    }
-    
-}
-
-extension MovieListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 125
+    func setUpSearchBar(){
+        navigationItem.searchController = UISearchController(searchResultsController: nil)
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController?.searchBar.placeholder = "Search by movie name"
+        navigationItem.searchController?.searchBar.delegate = self
+        self.definesPresentationContext = true
     }
 
 }
+
+// MARK: UISearchBar Delegate
+
+extension MovieListViewController:  UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange imdbTitle:String) {
+        print(imdbTitle)
+    }
+
+}
+
