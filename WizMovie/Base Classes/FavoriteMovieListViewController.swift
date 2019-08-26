@@ -9,15 +9,15 @@
 import UIKit
 
 class FavoriteMovieListViewController: UIViewController {
-
+    
+    // MARK: Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 }
 
-// MARK: UITableViewDataSource
-
+// MARK: UITableView DataSource Methods
 extension FavoriteMovieListViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -37,6 +37,8 @@ extension FavoriteMovieListViewController: UITableViewDataSource {
     }
     
 }
+
+// MARK: UITableView Delegate Methods
 
 extension FavoriteMovieListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
