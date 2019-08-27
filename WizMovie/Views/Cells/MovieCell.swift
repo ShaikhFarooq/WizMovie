@@ -19,6 +19,8 @@ class MovieCell: UITableViewCell {
         didSet {
             guard let viewModel = viewModel else { return }
             movieTitleLbl.text = "\(viewModel.name) (\(viewModel.movieYear))"
+            let posterURL = viewModel.imageUrl
+            moviePosterImg.setImage(fromURL: URL(string: posterURL)!)
         }
     }
     
