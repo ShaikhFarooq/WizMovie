@@ -11,8 +11,7 @@ import AlamofireImage
 
 
 extension UIImageView {
-    
-    func setImage(fromURL url: URL, animatedOnce: Bool = true, withPlaceholder placeholderImage: UIImage? = nil) {
+    func setImage(fromURL url: URL, animatedOnce: Bool = true, withPlaceholder placeholderImage: UIImage? = #imageLiteral(resourceName: "placeHolder")) {
         let hasImage: Bool = (self.image != nil)
         self.af_setImage(
             withURL: url,
@@ -22,3 +21,4 @@ extension UIImageView {
         )
     }
 }
+
