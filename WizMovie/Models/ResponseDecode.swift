@@ -23,7 +23,7 @@ extension Response {
         do {
             let response = try jsonDecoder.decode(T.self, from: data)
             return response
-        } catch let error {
+        } catch _ {
             return nil
         }
     }
