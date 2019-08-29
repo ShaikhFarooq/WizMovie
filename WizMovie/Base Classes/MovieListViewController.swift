@@ -40,6 +40,16 @@ class MovieListViewController: UIViewController {
         }
     }
     
+    func fetchMovieWithTitle(movieName: String,completion:((_ movie: MovieDetailModel) -> Void)?){
+        moviewViewModel.fetchMovieDetailsWithTitle(movieTitle: movieName){ [weak self] in
+            DispatchQueue.main.async {
+                if let detail = self?.moviewViewModel.getMovieDetails(){
+                    completion?(detail)
+                }
+            }
+        }
+    }
+    
     // MARK: - Search Settings
     func setUpSearchBar(){
         navigationItem.searchController = UISearchController(searchResultsController: nil)
@@ -71,11 +81,23 @@ extension MovieListViewController: UITableViewDataSource {
                                                                 return UITableViewCell()
         }
         
-        let cellViewModel = moviewViewModel.cellViewModel(index: indexPath.row)
+        let cellViewModel = moviewViewModel.getCellViewModel(index: indexPath.row)
         movieCell.viewModel = cellViewModel
         return movieCell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vm = moviewViewModel.getCellViewModel(index: indexPath.row)
+        if let movieName = vm?.name{
+            fetchMovieWithTitle(movieName: movieName){  [weak self] (movieDetail) in
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let movieDetailViewController = storyBoard.instantiateViewController(withIdentifier: "movieDetailViewController") as! MovieDetailViewController
+                movieDetailViewController.viewModel = movieDetail
+                self?.navigationController?.pushViewController(movieDetailViewController, animated: true)
+            }
+            
+        }
+    }
 }
 
 // MARK: UITableView Delegate Methods
@@ -88,7 +110,7 @@ extension MovieListViewController: UITableViewDelegate {
 // MARK: SearchBar Delegate Methods
 extension MovieListViewController:  UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange imdbTitle:String) {
-        delay(0.1, closure: {
+        delay(0.5, closure: {
             self.fetchMovieList(movieTile: imdbTitle)
         })
     }
