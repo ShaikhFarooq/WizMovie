@@ -10,9 +10,11 @@ import UIKit
 
 class MovieCell: UITableViewCell {
     
+    // MARK: - IBOutlets
     @IBOutlet weak var moviePosterImg: UIImageView!
     @IBOutlet weak var movieTitleLbl: UILabel!
     
+    // MARK: - Properties
     public static let reuseIdentifier = "movieCell"
     
     public var viewModel: MovieTableViewCellModel? {
@@ -24,6 +26,7 @@ class MovieCell: UITableViewCell {
         }
     }
     
+    // MARK: - Life Cycle Methods
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
