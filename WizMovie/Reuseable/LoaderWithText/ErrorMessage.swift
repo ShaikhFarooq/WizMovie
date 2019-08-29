@@ -67,6 +67,9 @@ class ErrorMessage: UIVisualEffectView {
     
     func show() {
         self.isHidden = false
+        delay(2.0, closure: {
+            self.hide()
+        })
     }
     
     func hide() {
