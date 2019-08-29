@@ -14,6 +14,7 @@ class MovieViewModel{
     // MARK: Properties
     private var network: Network?
     private var movies: Movies?
+    private var movieDetails: MovieDetails?
     let loaderWithText = LoaderWithText(text: "\(UIMessages.loadingMessage)")
     let errorMessageLabel = ErrorMessage(text: "")
     var movieTable = UITableView()
@@ -47,13 +48,12 @@ class MovieViewModel{
                 network?.searchMoviesOnJson(urlByName: url,type: Movies.self) {[weak self] (response,success,error) in
                     if let responseData = response{
                         self?.movies = responseData
-                        print(self?.movies?.Search)
                         self?.loaderWithText.hide()
                         self?.movieTable.isHidden = false
                         self?.errorMessageLabel.hide()
                         completion?()
-                    }
-                    else if let error = error {
+                        
+                    }else if let error = error {
                         print(error)
                         self?.loaderWithText.hide()
                         self?.movieTable.isHidden = true
@@ -72,12 +72,26 @@ class MovieViewModel{
         
     }
     
-    func fetchMovieDetailsWithTitle(movieTitle: String) {
-        let url: String = "\(EndPoints.Title.path)\(movieTitle)\(APIKey.ApiKey.rawValue)"
+    func fetchMovieDetailsWithTitle(movieTitle: String,completion:(() -> Void)?) {
+        guard let movTitle =         movieTitle.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)else{
+            return
+        }
+        let url: String = "\(EndPoints.Title.path)\(movTitle)\(APIKey.ApiKey.rawValue)"
         print(url)
-        
+        loaderWithText.show()
+        network?.searchMoviesOnJson(urlByName: url,type: MovieDetails.self) {[weak self] (response,success,error) in
+            if let responseData = response{
+                self?.loaderWithText.hide()
+                self?.movieDetails = responseData
+                 completion?()
+            }else if let error = error {
+                self?.loaderWithText.hide()
+                 print(error)
+            }
+        }
     }
     
+    // MARK: - To add loaders
     public func showLoader(windowView: UIView,tableView: UITableView){
         view = windowView
         movieTable = tableView
@@ -86,17 +100,27 @@ class MovieViewModel{
         errorMessageLabel.hide()
     }
     
+    // MARK: - Hide loaders
     public func hideLoader(){
         loaderWithText.hide()
         errorMessageLabel.hide()
     }
     
-    public func cellViewModel(index: Int) -> MovieTableViewCellModel? {
+    // MARK: - To send each cell data using index
+    public func getCellViewModel(index: Int) -> MovieTableViewCellModel? {
         guard let movies = movies else { return nil }
         let movieTableViewCellModel = MovieTableViewCellModel(movie: (movies.Search[index]))
         return movieTableViewCellModel
     }
     
+    // MARK: - Get each movie details
+    public func getMovieDetails() -> MovieDetailModel?{
+        guard let movieDetail = movieDetails else { return nil }
+        let movieDetailModel = MovieDetailModel(movieDetail: movieDetail)
+        return movieDetailModel
+    }
+    
+    // MARK: - Number of movies to be shown
     public var count: Int {
         return movies?.Search.count ?? 0
     }
