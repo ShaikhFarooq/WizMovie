@@ -13,6 +13,7 @@ class MovieCell: UITableViewCell {
     // MARK: - IBOutlets
     @IBOutlet weak var moviePosterImg: UIImageView!
     @IBOutlet weak var movieTitleLbl: UILabel!
+    @IBOutlet weak var favIconImgView: UIImageView!
     
     // MARK: - Properties
     public static let reuseIdentifier = "movieCell"
@@ -23,6 +24,7 @@ class MovieCell: UITableViewCell {
             movieTitleLbl.text = "\(viewModel.name) (\(viewModel.movieYear))"
             let posterURL = viewModel.imageUrl
             moviePosterImg.setImage(fromURL: URL(string: posterURL)!)
+            checkMovieIsInFavoriteList(vm: viewModel)
         }
     }
     
@@ -37,4 +39,15 @@ class MovieCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func checkMovieIsInFavoriteList(vm: MovieTableViewCellModel){
+        var favMovieArray = [MovieDetailModel]()
+        if let movieSaveArray = MovieUserDefaults.getMovieInfo(){
+            favMovieArray = movieSaveArray
+            if favMovieArray.contains(where: {($0.name == vm.name)}){
+                favIconImgView.isHidden = false
+            }else{
+                favIconImgView.isHidden = true
+            }
+        }
+    }
 }
