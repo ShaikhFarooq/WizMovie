@@ -29,14 +29,16 @@ class MovieListViewController: UIViewController {
         fetchMovieList(movieTile: "bad")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.reloadData()
+    }
     
     // MARK: - Networking
     func fetchMovieList(movieTile: String){
         moviewViewModel.showLoader(windowView: view,tableView: mTableView)
         moviewViewModel.searchMovieWithTitle(movieTitle: movieTile){ [weak self] in
-            DispatchQueue.main.async {
-                self?.mTableView.reloadData()
-            }
+            self?.reloadData()
         }
     }
     
@@ -62,6 +64,11 @@ class MovieListViewController: UIViewController {
         self.definesPresentationContext = true
     }
     
+    func reloadData(){
+        DispatchQueue.main.async {
+            self.mTableView.reloadData()
+        }
+    }
 }
 
 // MARK: UITableView DataSource Methods
@@ -110,9 +117,7 @@ extension MovieListViewController: UITableViewDelegate {
 // MARK: SearchBar Delegate Methods
 extension MovieListViewController:  UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange imdbTitle:String) {
-        delay(0.5, closure: {
             self.fetchMovieList(movieTile: imdbTitle)
-        })
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

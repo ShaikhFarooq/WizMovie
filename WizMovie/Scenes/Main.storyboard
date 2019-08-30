@@ -43,12 +43,21 @@
                                                     <color key="textColor" red="0.73717361690000005" green="0.73730176690000004" blue="0.73716557029999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="favIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ubW-Ur-w53">
+                                                    <rect key="frame" x="379" y="114.5" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="19e-BK-ZiX"/>
+                                                        <constraint firstAttribute="height" constant="25" id="uxx-kR-sW7"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="tmi-EK-laz" firstAttribute="top" secondItem="hsP-S2-Zid" secondAttribute="top" id="4Ca-gh-Emf"/>
                                                 <constraint firstItem="tmi-EK-laz" firstAttribute="bottom" secondItem="hsP-S2-Zid" secondAttribute="bottom" id="JsW-EF-FFM"/>
                                                 <constraint firstItem="tmi-EK-laz" firstAttribute="leading" secondItem="hsP-S2-Zid" secondAttribute="trailing" constant="10" id="X1I-NZ-Rmy"/>
                                                 <constraint firstItem="hsP-S2-Zid" firstAttribute="leading" secondItem="gkL-AN-6P5" secondAttribute="leading" constant="20" id="eCG-Df-sEJ"/>
+                                                <constraint firstAttribute="bottom" secondItem="ubW-Ur-w53" secondAttribute="bottom" constant="10" id="ktc-ud-kdM"/>
+                                                <constraint firstAttribute="trailing" secondItem="ubW-Ur-w53" secondAttribute="trailing" constant="10" id="mdZ-Tg-q3S"/>
                                                 <constraint firstAttribute="bottom" secondItem="hsP-S2-Zid" secondAttribute="bottom" constant="10" id="rFP-gb-6Tf"/>
                                                 <constraint firstAttribute="trailing" secondItem="tmi-EK-laz" secondAttribute="trailing" constant="20" id="scR-8B-TOL"/>
                                                 <constraint firstItem="hsP-S2-Zid" firstAttribute="top" secondItem="gkL-AN-6P5" secondAttribute="top" constant="10" id="whg-o1-SVa"/>
@@ -56,6 +65,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.16860446330000001" green="0.16864064340000001" blue="0.16860216859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
+                                            <outlet property="favIconImgView" destination="ubW-Ur-w53" id="f3H-21-78x"/>
                                             <outlet property="moviePosterImg" destination="hsP-S2-Zid" id="d1n-JF-4TZ"/>
                                             <outlet property="movieTitleLbl" destination="tmi-EK-laz" id="rBx-JZ-3BT"/>
                                         </connections>
@@ -351,8 +361,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="favIcon" width="33.333332061767578" height="33.333332061767578"/>
         <image name="placeHolder" width="112.66666412353516" height="112.66666412353516"/>
         <image name="shareIcon" width="33.333332061767578" height="33.333332061767578"/>
-        <image name="unfavIcon" width="30" height="30"/>
+        <image name="unfavIcon" width="33.333332061767578" height="33.333332061767578"/>
     </resources>
 </document>
