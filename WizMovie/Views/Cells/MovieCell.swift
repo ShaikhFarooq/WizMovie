@@ -39,6 +39,7 @@ class MovieCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    // MARK: - Check and show or hide favorite icon
     func checkMovieIsInFavoriteList(vm: MovieTableViewCellModel){
         var favMovieArray = [MovieDetailModel]()
         if let movieSaveArray = MovieUserDefaults.getMovieInfo(){
