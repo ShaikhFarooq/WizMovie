@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MovieDetailModel {
+class MovieDetailModel: Codable {
     
     private let movieDetail: MovieDetails
     
