@@ -27,10 +27,10 @@ class MovieViewModel{
     
     // MARK: Messages
     public enum UIMessages {
-        static let loadingMessage: String = "Please Wait...."
-        static let searchMessage: String = "Search your favorite movies in THE MOVIE DB"
-        static let notFound: String = "No results found for "
-        static let networkError: String = "Oops, there was an error fetching data :(\nPlease, check your connection and try again."
+        static let loadingMessage: String = "Please wait...."
+        static let searchMessage: String = "Search your favorite movies."
+        static let notFound: String = "No Movies Found for "
+        static let networkError: String = "Network Error”, “Unable to contact the server."
     }
     
     // MARK: - Network call
