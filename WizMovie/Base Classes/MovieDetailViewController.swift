@@ -27,6 +27,12 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        setData()
+        checkMovieIsInFavoriteList()
+    }
+    
+    //MARK: Binding Data to UI
+    func setData(){
         guard let vm = viewModel else {
             return
         }
@@ -39,15 +45,55 @@ class MovieDetailViewController: UIViewController {
         moviePosterImgView.setImage(fromURL: URL(string: vm.imageUrl)!)
     }
     
-    //MARK: User Interaction Methods
-    @IBAction func favoriteBtnTapped(_ sender: Any) {
+    func checkMovieIsInFavoriteList(){
+        guard let vm = viewModel else {
+            return
+        }
+        var favMovieArray = [MovieDetailModel]()
+        if let movieSaveArray = MovieUserDefaults.getMovieInfo(){
+            favMovieArray = movieSaveArray
+            if favMovieArray.contains(where: {($0.name == vm.name)}){
+                favoriteBtn.setImage(#imageLiteral(resourceName: "favIcon"), for: .normal)
+            }else{
+                favoriteBtn.setImage(#imageLiteral(resourceName: "unfavIcon"), for: .normal)
+            }
+        }
+    }
+    
+    func favoriteBtnTappedAction(){
         favBtnIsSelected = !favBtnIsSelected
+        guard let vm = viewModel else {
+            return
+        }
+        
         if favBtnIsSelected == true {
             favoriteBtn.setImage(#imageLiteral(resourceName: "favIcon"), for: .normal)
+            var favMovieArray = [MovieDetailModel]()
+            if let movieSaveArray = MovieUserDefaults.getMovieInfo(){
+                favMovieArray = movieSaveArray
+                if !favMovieArray.contains(where: {($0.name == vm.name)}){
+                    favMovieArray.append(vm)
+                    MovieUserDefaults.setMovieInfo(favMovieArray)
+                }
+            }
             
         } else if favBtnIsSelected == false {
             favoriteBtn.setImage(#imageLiteral(resourceName: "unfavIcon"), for: .normal)
+            var favMovieArray = [MovieDetailModel]()
+            if let movieSaveArray = MovieUserDefaults.getMovieInfo(){
+                favMovieArray = movieSaveArray
+                if favMovieArray.contains(where: {($0.name == vm.name)}){
+                    favMovieArray = favMovieArray.filter { $0.name != vm.name }
+                    print(favMovieArray)
+                    MovieUserDefaults.setMovieInfo(favMovieArray)
+                }
+            }
         }
+    }
+    
+    //MARK: User Interaction Methods
+    @IBAction func favoriteBtnTapped(_ sender: Any) {
+       favoriteBtnTappedAction()
     }
     
     @IBAction func shareBtnTapped(_ sender: Any) {
