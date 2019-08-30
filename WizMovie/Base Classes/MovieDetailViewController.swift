@@ -38,12 +38,39 @@ class MovieDetailViewController: UIViewController {
         imdbRatingLbl.text = "Rated : \(vm.imdbRating)"
         moviePosterImgView.setImage(fromURL: URL(string: vm.imageUrl)!)
     }
+    
+    //MARK: User Interaction Methods
     @IBAction func favoriteBtnTapped(_ sender: Any) {
         favBtnIsSelected = !favBtnIsSelected
         if favBtnIsSelected == true {
             favoriteBtn.setImage(#imageLiteral(resourceName: "favIcon"), for: .normal)
+            
         } else if favBtnIsSelected == false {
             favoriteBtn.setImage(#imageLiteral(resourceName: "unfavIcon"), for: .normal)
         }
+    }
+    
+    @IBAction func shareBtnTapped(_ sender: Any) {
+        guard let vm = viewModel else {
+            return
+        }
+        let mailSubject = "Movie detail of \(vm.name)"
+        let messageTosend = """
+        Movie Name : \(vm.name),
+        Year : \(vm.movieYear),
+        Actor : \(vm.actor),
+        Rated : \(vm.imdbRating),
+        Poster : \(vm.imageUrl)
+        """
+        
+        // set up activity view controller
+        let textToShare = [messageTosend]
+        let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        
+        // exclude some activity types from the list (optional)
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.postToFacebook, UIActivity.ActivityType.postToTwitter, UIActivity.ActivityType.postToWeibo,  UIActivity.ActivityType.print, UIActivity.ActivityType.copyToPasteboard,UIActivity.ActivityType.assignToContact,UIActivity.ActivityType.saveToCameraRoll,UIActivity.ActivityType.addToReadingList, UIActivity.ActivityType.postToFlickr, UIActivity.ActivityType.postToVimeo,UIActivity.ActivityType.postToTencentWeibo,UIActivity.ActivityType.airDrop]
+        activityViewController.setValue(mailSubject, forKey: "Subject")
+        self.present(activityViewController, animated: true, completion: nil)
     }
 }
