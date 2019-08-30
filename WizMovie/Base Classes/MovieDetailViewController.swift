@@ -16,10 +16,12 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var movieDirectorLbl: UILabel!
     @IBOutlet weak var movieActorLbl: UILabel!
     @IBOutlet weak var moviePosterImgView: UIImageView!
-    
     @IBOutlet weak var imdbRatingLbl: UILabel!
+    @IBOutlet weak var favoriteBtn: UIButton!
+    
     //MARK: Properties
     public var viewModel: MovieDetailModel?
+    var favBtnIsSelected = false
     
     //MARK: Life Cycle Methods
     override func viewDidLoad() {
@@ -36,6 +38,12 @@ class MovieDetailViewController: UIViewController {
         imdbRatingLbl.text = "Rated : \(vm.imdbRating)"
         moviePosterImgView.setImage(fromURL: URL(string: vm.imageUrl)!)
     }
-    
-    
+    @IBAction func favoriteBtnTapped(_ sender: Any) {
+        favBtnIsSelected = !favBtnIsSelected
+        if favBtnIsSelected == true {
+            favoriteBtn.setImage(#imageLiteral(resourceName: "favIcon"), for: .normal)
+        } else if favBtnIsSelected == false {
+            favoriteBtn.setImage(#imageLiteral(resourceName: "unfavIcon"), for: .normal)
+        }
+    }
 }
