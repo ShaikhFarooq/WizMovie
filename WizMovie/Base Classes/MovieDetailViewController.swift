@@ -54,18 +54,24 @@ class MovieDetailViewController: UIViewController {
             favMovieArray = movieSaveArray
             if favMovieArray.contains(where: {($0.name == vm.name)}){
                 favoriteBtn.setImage(#imageLiteral(resourceName: "favIcon"), for: .normal)
+                favBtnIsSelected = false
             }else{
                 favoriteBtn.setImage(#imageLiteral(resourceName: "unfavIcon"), for: .normal)
+                favBtnIsSelected = true
             }
+        }else{
+            favoriteBtn.setImage(#imageLiteral(resourceName: "unfavIcon"), for: .normal)
+            favBtnIsSelected = true
         }
     }
     
+    //MARK: - User Interaction Methods
     func favoriteBtnTappedAction(){
-        favBtnIsSelected = !favBtnIsSelected
+//        favBtnIsSelected = !favBtnIsSelected
         guard let vm = viewModel else {
             return
         }
-        
+        checkMovieIsInFavoriteList()
         if favBtnIsSelected == true {
             favoriteBtn.setImage(#imageLiteral(resourceName: "favIcon"), for: .normal)
             var favMovieArray = [MovieDetailModel]()
@@ -75,6 +81,9 @@ class MovieDetailViewController: UIViewController {
                     favMovieArray.append(vm)
                     MovieUserDefaults.setMovieInfo(favMovieArray)
                 }
+            }else{
+                favMovieArray.append(vm)
+                MovieUserDefaults.setMovieInfo(favMovieArray)
             }
             
         } else if favBtnIsSelected == false {
@@ -88,6 +97,15 @@ class MovieDetailViewController: UIViewController {
                     MovieUserDefaults.setMovieInfo(favMovieArray)
                 }
             }
+        }
+       
+        // Just to check whether data is getting saved or not
+        if let movieSaveArrays = MovieUserDefaults.getMovieInfo(){
+            for m in movieSaveArrays{
+                print(m.name)
+            }
+        }else{
+            print("Something went wrong could not save data to user defaults")
         }
     }
     

@@ -63,7 +63,8 @@ class MovieListViewController: UIViewController {
         navigationItem.searchController?.searchBar.delegate = self
         self.definesPresentationContext = true
     }
-    
+  
+    //MARK:- Relaod the tableview in order to refresh the list
     func reloadData(){
         DispatchQueue.main.async {
             self.mTableView.reloadData()
