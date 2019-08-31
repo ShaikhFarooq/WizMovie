@@ -22,3 +22,15 @@ extension UIImageView {
     }
 }
 
+
+extension UILabel {
+    func myLabel() {
+        textAlignment = .center
+        textColor = .white
+        backgroundColor = .lightGray
+        font = UIFont.systemFont(ofSize: 17)
+        numberOfLines = 0
+        lineBreakMode = .byCharWrapping
+        sizeToFit()
+    }
+}
