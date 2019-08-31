@@ -15,7 +15,7 @@ class MovieViewModel{
     private var network: Network?
     private var movies: Movies?
     private var movieDetails: MovieDetails?
-    let loaderWithText = LoaderWithText(text: "\(UIMessages.loadingMessage)")
+    let loaderWithText = LoaderWithText(text: "\(loadingMessage)")
     let errorMessageLabel = ErrorMessage(text: "")
     var movieTable = UITableView()
     var view = UIView()
@@ -26,19 +26,19 @@ class MovieViewModel{
     }
     
     // MARK: Messages
-    public enum UIMessages {
-        static let loadingMessage: String = "Please wait...."
-        static let searchMessage: String = "Search your favorite movies."
-        static let notFound: String = "No Movies Found for "
-        static let networkError: String = "Network Error”, “Unable to contact the server."
-    }
+//    public enum UIMessages {
+//        static let loadingMessage: String = "Please wait...."
+//        static let searchMessage: String = "Search your favorite movies."
+//        static let notFound: String = "No Movies Found for "
+//        static let networkError: String = "Network Error”, “Unable to contact the server."
+//    }
     
     // MARK: - Network call
     func searchMovieWithTitle(movieTitle: String,completion:(() -> Void)?) {
         if NetworkConnection.isConnectedToNetwork(){
             if !movieTitle.isEmpty{
                 loaderWithText.show()
-                loaderWithText.text = "\(UIMessages.loadingMessage)"
+                loaderWithText.text = "\(loadingMessage)"
                 guard let movTitle =         movieTitle.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)else{
                     return
                 }
@@ -57,37 +57,48 @@ class MovieViewModel{
                         print(error)
                         self?.loaderWithText.hide()
                         self?.movieTable.isHidden = true
-                        self?.errorMessageLabel.text = "\(UIMessages.notFound)\(movieTitle)"
+                        self?.errorMessageLabel.text = "\(noMovieFound)\(movieTitle)"
                         self?.errorMessageLabel.show()
                     }
                 }
             }else{
-                errorMessageLabel.text = "\(UIMessages.searchMessage)"
+                errorMessageLabel.text = "\(searchMessage)"
                 errorMessageLabel.show()
             }
         }else{
-            errorMessageLabel.text = "\(UIMessages.networkError)"
+            errorMessageLabel.text = "\(networkError)"
             errorMessageLabel.show()
         }
         
     }
     
     func fetchMovieDetailsWithTitle(movieTitle: String,completion:(() -> Void)?) {
-        guard let movTitle =         movieTitle.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)else{
-            return
-        }
-        let url: String = "\(EndPoints.Title.path)\(movTitle)\(APIKey.ApiKey.rawValue)"
-        print(url)
-        loaderWithText.show()
-        network?.searchMoviesOnJson(urlByName: url,type: MovieDetails.self) {[weak self] (response,success,error) in
-            if let responseData = response{
-                self?.loaderWithText.hide()
-                self?.movieDetails = responseData
-                 completion?()
-            }else if let error = error {
-                self?.loaderWithText.hide()
-                 print(error)
+        if NetworkConnection.isConnectedToNetwork(){
+            if !movieTitle.isEmpty{
+                guard let movTitle =         movieTitle.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)else{
+                    return
+                }
+                let url: String = "\(EndPoints.Title.path)\(movTitle)\(APIKey.ApiKey.rawValue)"
+                print(url)
+                loaderWithText.show()
+                network?.searchMoviesOnJson(urlByName: url,type: MovieDetails.self) {[weak self] (response,success,error) in
+                    if let responseData = response{
+                        self?.loaderWithText.hide()
+                        self?.movieDetails = responseData
+                        completion?()
+                    }else if let error = error {
+                        self?.loaderWithText.hide()
+                        print(error)
+                    }
+                }
+            }else{
+                errorMessageLabel.text = "\(searchMessage)"
+                errorMessageLabel.show()
             }
+            
+        }else{
+            errorMessageLabel.text = "\(networkError)"
+            errorMessageLabel.show()
         }
     }
     
@@ -97,6 +108,7 @@ class MovieViewModel{
         movieTable = tableView
         view.addSubview(loaderWithText)
         view.addSubview(errorMessageLabel)
+        loaderWithText.hide()
         errorMessageLabel.hide()
     }
     
