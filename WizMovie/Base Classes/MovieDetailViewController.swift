@@ -120,10 +120,10 @@ class MovieDetailViewController: UIViewController {
         }
         let mailSubject = "Movie detail of \(vm.name)"
         let messageTosend = """
-        Movie Name : \(vm.name),
-        Year : \(vm.movieYear),
-        Actor : \(vm.actor),
-        Rated : \(vm.imdbRating),
+        Movie Name : \(vm.name)
+        Year : \(vm.movieYear)
+        Actor : \(vm.actor)
+        Rated : \(vm.imdbRating)
         Poster : \(vm.imageUrl)
         """
         
