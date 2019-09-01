@@ -19,7 +19,7 @@ class MovieListViewController: UIViewController {
     
     // MARK: - Injection
     let moviewViewModel = MovieViewModel(network: Network())
-    
+    var imdbTitle = ""
     
     // MARK: - Life Cycle Methods
     override func viewDidLoad() {
@@ -63,7 +63,7 @@ class MovieListViewController: UIViewController {
         navigationItem.searchController?.searchBar.delegate = self
         self.definesPresentationContext = true
     }
-  
+    
     //MARK:- Relaod the tableview in order to refresh the list
     func reloadData(){
         DispatchQueue.main.async {
@@ -117,11 +117,20 @@ extension MovieListViewController: UITableViewDelegate {
 
 // MARK: SearchBar Delegate Methods
 extension MovieListViewController:  UISearchBarDelegate{
+
     func searchBar(_ searchBar: UISearchBar, textDidChange imdbTitle:String) {
-            self.fetchMovieList(movieTile: imdbTitle)
+        self.imdbTitle = imdbTitle
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        if self.imdbTitle.count > 0{
+            searchBar.resignFirstResponder()
+            self.fetchMovieList(movieTile: self.imdbTitle)
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.imdbTitle = ""
         moviewViewModel.hideLoader()
     }
 }
