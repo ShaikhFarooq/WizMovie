@@ -63,7 +63,7 @@
                                                 <constraint firstItem="hsP-S2-Zid" firstAttribute="top" secondItem="gkL-AN-6P5" secondAttribute="top" constant="10" id="whg-o1-SVa"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.16860446330000001" green="0.16864064340000001" blue="0.16860216859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.16862745098039217" green="0.16862745098039217" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="favIconImgView" destination="ubW-Ur-w53" id="f3H-21-78x"/>
                                             <outlet property="moviePosterImg" destination="hsP-S2-Zid" id="d1n-JF-4TZ"/>
